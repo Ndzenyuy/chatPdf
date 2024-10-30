@@ -20,6 +20,7 @@ def get_unique_id():
     return str(uuid.uuid4())
 def main():
     st.write("This is admin site for chat with PDF")
+    uploaded_file = st.file_uploader("Choose a file", "pdf")
     if uploaded_file is not None:
         request_id = get_unique_id()
         st.write(f"Request Id: {request_id}")
