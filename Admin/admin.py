@@ -19,7 +19,10 @@ from langchain_community.document_loaders import PyPDFLoader
 ## import FAISS
 from langchain_community.vectorstores import FAISS
 
-bedrock_client = boto3.client(service_name="bedrock-runtime")
+from botocore.config import Config
+
+my_config = Config(region_name='us-east-1')  
+bedrock_client = boto3.client(service_name="bedrock-runtime", config=my_config)
 bedrock_embeddings = BedrockEmbeddings(model_id="amazon.titan-embed-text-v1", client=bedrock_client)
 
 def get_unique_id():
