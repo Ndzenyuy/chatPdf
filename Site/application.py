@@ -113,13 +113,11 @@ def main():
 
         ## Split Text
         splitted_docs = split_text(pages, 1000, 200)
-        st.write(f"Splitted Docs length: {len(splitted_docs)}")
 
-        st.write("Creating the vectore store")
         result = create_vector_store(request_id, splitted_docs)
 
         if result:
-            st.write("Hurray!! PDF processed successfully")
+            st.write("PDF processed successfully")
 
         else:
             st.write("Error!! Please check logs")
@@ -127,8 +125,6 @@ def main():
         load_index()
 
         dir_list = os.listdir(folder_path)
-        st.write(f"Files and Directories in {folder_path}")
-        st.write(dir_list)
 
         ## create index
         faiss_index = FAISS.load_local(
