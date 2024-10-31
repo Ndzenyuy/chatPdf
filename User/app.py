@@ -97,12 +97,12 @@ def main():
     question = st.text_input("Please ask your question")
 
     if st.button("Ask Question"):
-        with st.spinner("Querying...")
-        llm = get_llm()
+        with st.spinner("Querying..."):
+            llm = get_llm()
 
-        # get_response
-        st.write(get_response(llm, faiss_index, question))
-        st.success("Done")
+            # get_response
+            st.write(get_response(llm, faiss_index, question))
+            st.success("Done")
 
 
 
