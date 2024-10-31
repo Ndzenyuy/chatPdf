@@ -3,6 +3,7 @@ import streamlit as st
 import os
 import uuid
 
+
 ## s3_clinet
 s3_client = boto3.client("s3")
 BUCKET_NAME = os.getenv("BUCKET_NAME")
@@ -40,8 +41,8 @@ def load_index():
     s3_client.download_file(Bucket=BUCKET_NAME, Key="my_faiss.pkl", Filename=f"{folder_path}my_faiss.pkl")
 
 def get_llm():
-    llm=Bedrock(model_id="anthropic.claude-v2:1", client=bedrock_client,
-                model_kwargs={'max_tokens_to_sample': 512})
+    llm=Bedrock(model_id="ai21.j2-mid-v1", client=bedrock_client,
+                model_kwargs={'maxTokens':512})
     return llm
 
 ## get response
@@ -71,7 +72,7 @@ def get_response(llm, vectorstore, question ):
     ),
     return_source_documents=True,
     chain_type_kwargs={"prompt": PROMPT}
-)
+    )
     answer=qa({"query":question})
     return answer['result']
 
