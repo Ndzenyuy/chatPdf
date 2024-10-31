@@ -79,13 +79,15 @@ def get_response(llm,vectorstore, question ):
 
 ## Main method
 def main():
-    st.header("This is client site for chat with PDF using Bedrock, RAG etc")
+    st.header("This is Client Site for Chat with PDF demo using Bedrock, RAG etc")
+
     load_index()
+
     dir_list = os.listdir(folder_path)
     st.write(f"Files and Directories in {folder_path}")
     st.write(dir_list)
 
-    ## Create index
+    ## create index
     faiss_index = FAISS.load_local(
         index_name="my_faiss",
         folder_path = folder_path,
@@ -95,9 +97,9 @@ def main():
 
     st.write("INDEX IS READY")
     question = st.text_input("Please ask your question")
-
     if st.button("Ask Question"):
         with st.spinner("Querying..."):
+
             llm = get_llm()
 
             # get_response
