@@ -87,8 +87,8 @@ def main():
 
     ## Create index
     faiss_index = FAISS.load_local(
-        index_name="my_faiss"
-        folder_path = folder_path
+        index_name="my_faiss",
+        folder_path = folder_path,
         embeddings=bedrock_embeddings,
         allow_dangerous_deserialization=True
     )
