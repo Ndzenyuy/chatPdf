@@ -100,8 +100,7 @@ def main():
     st.header("This is a site for chat with uploaded PDFs")
     uploaded_file = st.file_uploader("Choose a file", "pdf")
     if uploaded_file is not None:
-        request_id = get_unique_id()
-        st.write(f"Request Id: {request_id}")
+        request_id = get_unique_id()        
         saved_file_name = f"{request_id}.pdf"
         with open(saved_file_name, mode="wb") as w:
             w.write(uploaded_file.getvalue())        
