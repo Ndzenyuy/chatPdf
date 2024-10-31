@@ -41,11 +41,11 @@ def load_index():
 
 def get_llm():
     llm=Bedrock(model_id="anthropic.claude-v2:1", client=bedrock_client,
-                model_kwargs={'max_tokens_to_sample':512})
+                model_kwargs={'max_tokens_to_sample': 512})
     return llm
 
 ## get response
-def get_response(llm,vectorstore, question ):
+def get_response(llm, vectorstore, question ):
     ## create prompt / template
     prompt_template = """
 
