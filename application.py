@@ -97,7 +97,7 @@ def get_response(llm, vectorstore, question ):
 
 ## Main methode
 def main():
-    st.header("This is a site for chat with uploaded PDFs")
+    st.header("CHAT WITH PDF")
     uploaded_file = st.file_uploader("Choose a file", "pdf")
     if uploaded_file is not None:
         request_id = get_unique_id()        
