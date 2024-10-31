@@ -126,28 +126,28 @@ def main():
 
         load_index()
 
-    dir_list = os.listdir(folder_path)
-    st.write(f"Files and Directories in {folder_path}")
-    st.write(dir_list)
+        dir_list = os.listdir(folder_path)
+        st.write(f"Files and Directories in {folder_path}")
+        st.write(dir_list)
 
-    ## create index
-    faiss_index = FAISS.load_local(
-        index_name="my_faiss",
-        folder_path = folder_path,
-        embeddings=bedrock_embeddings,
-        allow_dangerous_deserialization=True
-    )
+        ## create index
+        faiss_index = FAISS.load_local(
+            index_name="my_faiss",
+            folder_path = folder_path,
+            embeddings=bedrock_embeddings,
+            allow_dangerous_deserialization=True
+        )
 
-    st.write("INDEX IS READY")
-    question = st.text_input("Please ask your question")
-    if st.button("Ask Question"):
-        with st.spinner("Querying..."):
+        st.write("INDEX IS READY")
+        question = st.text_input("Please ask your question")
+        if st.button("Ask Question"):
+            with st.spinner("Querying..."):
 
-            llm = get_llm()
+                llm = get_llm()
 
-            # get_response
-            st.write(get_response(llm, faiss_index, question))
-            st.success("Done")
+                # get_response
+                st.write(get_response(llm, faiss_index, question))
+                st.success("Done")
 
 if __name__ == "__main__":
     main()
