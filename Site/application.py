@@ -104,26 +104,17 @@ def main():
         st.write(f"Request Id: {request_id}")
         saved_file_name = f"{request_id}.pdf"
         with open(saved_file_name, mode="wb") as w:
-            w.write(uploaded_file.getvalue())
-        
+            w.write(uploaded_file.getvalue())        
         loader = PyPDFLoader(saved_file_name)
         pages = loader.load_and_split()
-
         st.write(f"Total Pages: {len(pages)}")
 
         ## Split Text
         splitted_docs = split_text(pages, 1000, 200)
-
         result = create_vector_store(request_id, splitted_docs)
-
-        if result:
-            st.write("PDF processed successfully")
-
-        else:
+        if result is False:            
             st.write("Error!! Please check logs")
-
         load_index()
-
         dir_list = os.listdir(folder_path)
 
         ## create index
@@ -134,14 +125,12 @@ def main():
             allow_dangerous_deserialization=True
         )
 
-        st.write("INDEX IS READY")
-        question = st.text_input("Please ask your question")
+        st.write("Index Is Ready")
+        question = st.text_input("Please ask your question based on the uploaded file")
         if st.button("Ask Question"):
-            with st.spinner("Querying..."):
+            with st.spinner("Processing..."):
 
                 llm = get_llm()
-
-                # get_response
                 st.write(get_response(llm, faiss_index, question))
                 st.success("Done")
 
