@@ -75,6 +75,18 @@ attach policies:
 Go to the EC2 console, select the instance then select Actions -> Security -> Modify IAM role
 Select the IAM role previously created "pdfBotRole" and click Apply
 
+### Create S3 bucket
+
+On the console, search S3 then create a bucket with the following(xxx are random numbers to make the bucket name unique)
+
+```
+    name: bedrock-chatpdf-xxx
+    region: us-east-one
+    allow defaults and choose create
+```
+
+Copy the bucket name as well use it in the next steps
+
 ### SSH into the instance and clone Source code
 
 Copy the public address of the instance and open a terminal
@@ -87,4 +99,51 @@ Verify docker installation
 docker ps
 ```
 
-if docker is installed, will see a table for existing docker containers which will of course be empty
+If docker is installed, will see a table for existing docker containers which will of course be empty
+
+### Clone source
+
+Open a terminal and run the following
+```bash
+    git clone https://github.com/Ndzenyuy/chatPdf.git
+    cd chatPdf
+```
+
+### Access for LLM models in Amazon Bedrock
+
+On the console Amazon Bedrock -> Base models -> Model Access
+Make sure you have access to ```Jurassic-2 Ultra``` and ```Titan Embeddings G1 - Text```, if not you can access by requesting access.
+
+### Build and Run App docker image
+
+Make sure you are inside chatPdf folder and run the following command
+
+```bash
+    docker build -t chatPdf-app .
+```
+
+The image will be built, then we can run it with the following
+
+```bash
+    docker run -d -e BUCKET_NAME="yourBucketName" -p 8083:8083 chatPdf
+```
+
+Now copy the public IP of the EC2 instance and type it on the browser followed by the port number 8083. For instance
+
+```
+XX.XX.XX.XX:8083
+```
+## How to use the App
+
+The landing page will first require the user to upload a pdf document
+![](Landing page)
+
+Either drag and drop or Click on the button "Browse files" Load the PDF document and ask questions based on its content
+
+![Ask questions ]()
+
+## Conclusion
+
+In this project, we have successfully developed an innovative PDF chatbot application designed to significantly reduce the time spent on research and reading. By transforming hours of traditional document review into just a few minutes of interactive engagement, users can efficiently understand the content, authorship, summaries, and key findings of PDF documents.
+
+This application serves as a valuable tool for students, enhancing their ability to engage with academic articles and literature. By streamlining the process of extracting relevant information from complex texts, the chatbot not only saves time but also fosters critical thinking and enhances research skills. This project represents a significant advancement in educational technology, paving the way for improved student capabilities in navigating and relating to scholarly articles.
