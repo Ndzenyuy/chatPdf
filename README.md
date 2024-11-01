@@ -15,7 +15,7 @@ The development of this application will utilize a range of sophisticated tools 
 
 ## Architecture
 
-![Architecture]()
+![Architecture](https://github.com/Ndzenyuy/chatPdf/blob/main/images/architecture.jpg)
 
 ## Principle
 
@@ -136,11 +136,11 @@ XX.XX.XX.XX:8083
 ## How to use the App
 
 The landing page will first require the user to upload a pdf document
-![](Landing page)
+![Landing Page](https://github.com/Ndzenyuy/chatPdf/blob/main/images/landingPage.png)
 
 Either drag and drop or Click on the button "Browse files" Load the PDF document and ask questions based on its content
 
-![Ask questions ]()
+![Ask questions](https://github.com/Ndzenyuy/chatPdf/blob/main/images/queryPdf.png)
 
 ## Conclusion
 
