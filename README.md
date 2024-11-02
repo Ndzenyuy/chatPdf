@@ -15,7 +15,7 @@ The development of this application will utilize a range of sophisticated tools 
 
 ## Architecture
 
-![Architecture](https://github.com/Ndzenyuy/chatPdf/blob/main/images/architecture.jpg)
+![Architecture](https://github.com/Ndzenyuy/chatPdf/blob/main/images/architecture.png)
 
 ## Principle
 
